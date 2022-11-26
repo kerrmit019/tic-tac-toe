@@ -4,33 +4,34 @@ const boardGameGrid = document.querySelector(".boardGameGrid");
 // Gameboard  object (module)
 //     -store board array inside Gameboard object
 const Gameboard = (() => {
-  const board = [".", ".", ".", "X", ".", ".", "O", ".", "."];
+  const board = [".", ".", ".", ".", ".", ".", "O", ".", "."];
   const testBoard = ["X", "O", "X", "X", "X", "X", "O", "O", "X"];
-  return { board };
-})();
 
-// TODO update gameboard
+  // TODO update gameboard
+
+  const displayBoard = ((board) => {
+    console.log(board);
+    let squareCount = 0;
+    const printBoard = (() => {
+      board.forEach(function (element) {
+        console.log(element);
+        const square = document.getElementById(`square-${squareCount}`);
+        console.log(`square-${squareCount}`);
+        const move = document.createElement("p");
+        move.textContent = element;
+        square.append(move);
+        squareCount++;
+      });
+    })();
+    return;
+  })(testBoard);
+  return {};
+})();
 
 console.log(Gameboard);
 
 // display gameboard to page
 // IIFE - might change this out when add in a game controller to call functions.
-const displayController = ((board) => {
-  console.log(board);
-  let squareCount = 0;
-  const printBoard = (() => {
-    board.forEach(function (element) {
-      console.log(element);
-      const square = document.getElementById(`square-${squareCount}`);
-      console.log(`square-${squareCount}`);
-      const move = document.createElement("p");
-      move.textContent = element;
-      square.append(move);
-      squareCount++;
-    });
-  })();
-  return;
-})(Gameboard.board);
 
 const Player = (name, token) => {
   const getName = () => name;
