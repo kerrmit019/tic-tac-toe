@@ -1,5 +1,6 @@
 // DOM
-const gameContainer = document.getElementById("boardGameContainer");
+const boardGameGrid = document.querySelector(".boardGameGrid");
+
 // Gameboard  object (module)
 //     -store board array inside Gameboard object
 const Gameboard = (() => {
@@ -11,15 +12,16 @@ const Gameboard = (() => {
 console.log(Gameboard);
 
 // display gameboard to page
-// IIFE
+// IIFE - might change this out when add in a game controller to call functions.
 const displayController = ((board) => {
   console.log(board);
-  const printedBoard = (() => {
+  const printBoard = (() => {
     board.forEach(function (element) {
       console.log(element);
+
       const move = document.createElement("p");
       move.textContent = element;
-      gameContainer.append(move);
+      boardGameGrid.append(move);
     });
   })();
   return;
