@@ -4,11 +4,15 @@ const boardGameGrid = document.querySelector(".boardGameGrid");
 // Gameboard  object (module)
 //     -store board array inside Gameboard object
 const Gameboard = (() => {
-  const board = [".", ".", "X", ".", ".", ".", "O", ".", "."];
+  let board = [".", ".", ".", ".", ".", ".", ".", ".", "."];
 
   // const board = ["O", "O", "X", "O", "X", "O", "O", "O", "X"];
 
-  // TODO update gameboard
+  // update gameboard
+  const updateBoard = (location, token) => {
+    board[location] = token;
+    return;
+  };
 
   const displayBoard = () => {
     console.log(board);
@@ -24,7 +28,7 @@ const Gameboard = (() => {
     });
     return;
   };
-  return { displayBoard };
+  return { displayBoard, updateBoard };
 })();
 
 // display gameboard to page
@@ -35,9 +39,14 @@ const Player = (name, token) => {
   const getToken = () => token;
 
   // TODO place token logic.
-  //
+  const placeToken = () => {
+    // dummy location - but will be click event
+    let location = 4;
+    Gameboard.updateBoard(location, token);
+    return;
+  };
   //   TODO assign winner e.g player.wins()
-  return {};
+  return { placeToken };
 };
 
 // GAME LOGIC
@@ -65,8 +74,18 @@ const Player = (name, token) => {
 // TODO check if token can be placed
 
 // GAME CONTROLLER
+// needs a lot of work
 const gameController = (() => {
+  //  Set up players
+  const player1 = Player("P1", "X");
+  const player2 = Player("P2", "O");
+
+  // This could be start of game loop
+  // e.g player one -> display -check for winner -> player 2 ->
+  // Dummy play
+  player1.placeToken();
+  player2.placeToken();
+
   // Display board to screen
-  // TODO Gameboard.updateBoard;
   Gameboard.displayBoard();
 })();
