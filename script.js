@@ -23,6 +23,7 @@ const Gameboard = (() => {
       console.log(`square-${squareCount}`);
       const move = document.createElement("p");
       move.textContent = element;
+      // square.addEventListener("click", (e) => checkMove(e)); TODO 1. needs work on this - DO NEXT
       square.append(move);
       squareCount++;
     });
@@ -41,11 +42,13 @@ const Player = (name, token) => {
   // TODO place token logic.
   const placeToken = () => {
     // dummy location - but will be click event
-    let location = 4;
-    Gameboard.updateBoard(location, token);
+    let location = 3;
+    console.log(location);
+    Gameboard.updateBoard(location, getToken());
     return;
   };
   //   TODO assign winner e.g player.wins()
+
   return { placeToken };
 };
 
