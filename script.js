@@ -5,30 +5,27 @@ const boardGameGrid = document.querySelector(".boardGameGrid");
 //     -store board array inside Gameboard object
 const Gameboard = (() => {
   const board = [".", ".", ".", ".", ".", ".", "O", ".", "."];
-  const testBoard = ["X", "O", "X", "X", "X", "X", "O", "O", "X"];
+
+  const testBoard = ["O", "O", "X", "O", "X", "O", "O", "O", "X"];
 
   // TODO update gameboard
 
   const displayBoard = ((board) => {
     console.log(board);
     let squareCount = 0;
-    const printBoard = (() => {
-      board.forEach(function (element) {
-        console.log(element);
-        const square = document.getElementById(`square-${squareCount}`);
-        console.log(`square-${squareCount}`);
-        const move = document.createElement("p");
-        move.textContent = element;
-        square.append(move);
-        squareCount++;
-      });
-    })();
+    board.forEach(function (element) {
+      console.log(element);
+      const square = document.getElementById(`square-${squareCount}`);
+      console.log(`square-${squareCount}`);
+      const move = document.createElement("p");
+      move.textContent = element;
+      square.append(move);
+      squareCount++;
+    });
     return;
-  })(testBoard);
-  return {};
+  })(board);
+  return { displayBoard };
 })();
-
-console.log(Gameboard);
 
 // display gameboard to page
 // IIFE - might change this out when add in a game controller to call functions.
@@ -66,3 +63,10 @@ const Player = (name, token) => {
 
 // wins
 // TODO check if token can be placed
+
+// GAME CONTROLLER
+const gameController = (() => {
+  // Display board to screen
+  // TODO Gameboard.updateBoard;
+  Gameboard.displayBoard;
+})();
