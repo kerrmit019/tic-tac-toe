@@ -4,13 +4,13 @@ const boardGameGrid = document.querySelector(".boardGameGrid");
 // Gameboard  object (module)
 //     -store board array inside Gameboard object
 const Gameboard = (() => {
-  const board = [".", ".", ".", ".", ".", ".", "O", ".", "."];
+  const board = [".", ".", "X", ".", ".", ".", "O", ".", "."];
 
-  const testBoard = ["O", "O", "X", "O", "X", "O", "O", "O", "X"];
+  // const board = ["O", "O", "X", "O", "X", "O", "O", "O", "X"];
 
   // TODO update gameboard
 
-  const displayBoard = ((board) => {
+  const displayBoard = () => {
     console.log(board);
     let squareCount = 0;
     board.forEach(function (element) {
@@ -23,7 +23,7 @@ const Gameboard = (() => {
       squareCount++;
     });
     return;
-  })(board);
+  };
   return { displayBoard };
 })();
 
@@ -68,5 +68,5 @@ const Player = (name, token) => {
 const gameController = (() => {
   // Display board to screen
   // TODO Gameboard.updateBoard;
-  Gameboard.displayBoard;
+  Gameboard.displayBoard();
 })();
