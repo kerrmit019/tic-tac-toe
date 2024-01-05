@@ -40,9 +40,11 @@ const Player = (name, token) => {
   const getToken = () => token;
 
   // TODO place token logic.
-  const placeToken = () => {
-    // dummy location - but will be click event
-    let location = 3;
+  const placeToken = (location) => {
+    // TODO dummy location - but will be click event
+    // TODO checkLocation/move is valid
+    // but hardcoded for now
+    // let location = 3;
     console.log(location);
     Gameboard.updateBoard(location, getToken());
     return;
@@ -86,8 +88,9 @@ const gameController = (() => {
   // This could be start of game loop
   // e.g player one -> display -check for winner -> player 2 ->
   // Dummy play
-  player1.placeToken();
-  player2.placeToken();
+  // location is argument
+  player1.placeToken(3);
+  player2.placeToken(4);
 
   // Display board to screen
   Gameboard.displayBoard();
