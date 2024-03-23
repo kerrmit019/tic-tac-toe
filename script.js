@@ -10,9 +10,9 @@ const Gameboard = () => {
 
   // update gameboard
   const placeToken = (location, player) => {
-    // if (board[location] === ".") {
-    board[location].addToken(player);
-    // }
+    if (board[location].getValue() === "") {
+      board[location].addToken(player);
+    }
     return;
   };
 
@@ -26,7 +26,7 @@ const Gameboard = () => {
  ** O: Player 2's token
  */
 function Cell() {
-  let value = ".";
+  let value = "";
 
   // Accept a player's token to change the value of the cell
   const addToken = (player) => {
@@ -142,6 +142,10 @@ const ScreenController = () => {
     const selectedCell = e.target.dataset.cell;
     // Make sure I've clicked a cell and not the gaps in between
     if (!selectedCell) return;
+
+    // TODO add in condition to check successful turn e.g if clicks on already filled cell nothing happens.
+    // did a check for empty cell in  placeToken(), but possibly other check here would be better. as still skips
+    // to next player
 
     game.playRound(selectedCell);
     updateScreen();
