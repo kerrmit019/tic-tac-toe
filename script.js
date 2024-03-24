@@ -12,8 +12,11 @@ const Gameboard = () => {
   const placeToken = (location, player) => {
     if (board[location].getValue() === "") {
       board[location].addToken(player);
+      return true;
+    } else {
+      console.log("False Move!");
+      return false;
     }
-    return;
   };
 
   return { getBoard, placeToken };
@@ -69,37 +72,38 @@ const GameController = () => {
     console.log(
       `Placing ${getActivePlayer().getName()}'s token into location ${location}...`
     );
-    board.placeToken(location, getActivePlayer());
+    if (board.placeToken(location, getActivePlayer())) {
+      console.log("Good Move!");
+      switchPlayerTurn();
+    }
+    // Switch player turn
+  };
 
-    /*  This is where we would check for a winner and handle that logic,
+  /*  This is where we would check for a winner and handle that logic,
         such as a win message. */
 
-    // GAME LOGIC
-    // TODO check for winner.
-    //  0 1 2
-    //  3 4 5
-    //  6 7 8
+  // GAME LOGIC
+  // TODO check for winner.
+  //  0 1 2
+  //  3 4 5
+  //  6 7 8
 
-    // win conditions
-    // HORIZONTAL (plus 1 starting at 0, 3, 6)
-    //  0 1 2 match
-    // 3 4 5 match
-    // 6 7 8 match
+  // win conditions
+  // HORIZONTAL (plus 1 starting at 0, 3, 6)
+  //  0 1 2 match
+  // 3 4 5 match
+  // 6 7 8 match
 
-    // VERTICAL (plus 3 starting at 0, 1, 2)
-    //  0 3 6 match
-    //  1 4 7 match
-    //  2 5 8 match
+  // VERTICAL (plus 3 starting at 0, 1, 2)
+  //  0 3 6 match
+  //  1 4 7 match
+  //  2 5 8 match
 
-    // DIAGONAL (plus 4 starting at 0, plus 2 starting at 2)
-    // 0 4 8 match
-    //  2 4 6 match
+  // DIAGONAL (plus 4 starting at 0, plus 2 starting at 2)
+  // 0 4 8 match
+  //  2 4 6 match
 
-    // wins
-
-    // Switch player turn
-    switchPlayerTurn();
-  };
+  // wins
 
   return {
     playRound,
@@ -148,6 +152,7 @@ const ScreenController = () => {
     // to next player
 
     game.playRound(selectedCell);
+
     updateScreen();
   }
   boardDiv.addEventListener("click", clickHandlerBoard);
