@@ -14,7 +14,6 @@ const Gameboard = () => {
       board[location].addToken(player);
       return true;
     } else {
-      console.log("False Move!");
       return false;
     }
   };
@@ -61,54 +60,84 @@ const GameController = () => {
   const board = Gameboard();
 
   let activePlayer = player1;
+  let gameStatus = true;
+  let winner = "No one";
+  let roundCount = 0;
 
+  const getGameStatus = () => gameStatus;
   const switchPlayerTurn = () => {
     activePlayer = activePlayer === player1 ? player2 : player1;
   };
   const getActivePlayer = () => activePlayer;
 
-  const playRound = (location) => {
-    // Drop a token for the current player
-    console.log(
-      `Placing ${getActivePlayer().getName()}'s token into location ${location}...`
-    );
-    if (board.placeToken(location, getActivePlayer())) {
-      console.log("Good Move!");
-      switchPlayerTurn();
+  const checkForWinner = () => {
+    // TODO check for winner.
+    //  0 1 2
+    //  3 4 5
+    //  6 7 8
+    // win conditions
+    // HORIZONTAL (plus 1 starting at 0, 3, 6)
+    //  0 1 2 match
+    // 3 4 5 match
+    // 6 7 8 match
+    // VERTICAL (plus 3 starting at 0, 1, 2)
+    //  0 3 6 match
+    //  1 4 7 match
+    //  2 5 8 match
+    // DIAGONAL (plus 4 starting at 0, plus 2 starting at 2)
+    // 0 4 8 match
+    //  2 4 6 match
+    // wins
+    let xCount = 0;
+    let oCount = 0;
+    // check horizontals
+    console.log(xCount, oCount);
+    console.log(board.getBoard()[0].getValue());
+    for (let j = 0; j < 3; j++)
+      if (board.getBoard()[j].getValue() == "X") {
+        console.log("Counting");
+        xCount++;
+        console.log(xCount);
+      } else if (board.getBoard()[j].getValue() == "O") {
+        oCount++;
+      }
+    if (xCount === 3 || oCount === 3) {
+      return true;
     }
-    // Switch player turn
   };
 
-  /*  This is where we would check for a winner and handle that logic,
-        such as a win message. */
+  const endGame = () => {
+    console.log("Game Over!");
 
-  // GAME LOGIC
-  // TODO check for winner.
-  //  0 1 2
-  //  3 4 5
-  //  6 7 8
+    gameStatus = false;
+  };
 
-  // win conditions
-  // HORIZONTAL (plus 1 starting at 0, 3, 6)
-  //  0 1 2 match
-  // 3 4 5 match
-  // 6 7 8 match
+  const getWinner = () => winner;
 
-  // VERTICAL (plus 3 starting at 0, 1, 2)
-  //  0 3 6 match
-  //  1 4 7 match
-  //  2 5 8 match
+  const playRound = (location) => {
+    roundCount++;
 
-  // DIAGONAL (plus 4 starting at 0, plus 2 starting at 2)
-  // 0 4 8 match
-  //  2 4 6 match
-
-  // wins
+    if (getGameStatus()) {
+      if (board.placeToken(location, getActivePlayer())) {
+        if (checkForWinner()) {
+          console.log(getActivePlayer().getName() + " wins");
+          winner = getActivePlayer().getName();
+          endGame();
+        }
+        if (roundCount >= 9) {
+          endGame();
+        }
+        switchPlayerTurn();
+      }
+    }
+  };
 
   return {
     playRound,
     getActivePlayer,
     getBoard: board.getBoard,
+    getGameStatus,
+    getWinner,
   };
 };
 
@@ -125,8 +154,12 @@ const ScreenController = () => {
     const board = game.getBoard();
     const activePlayer = game.getActivePlayer();
 
-    // Display player's turn
-    playerTurnDiv.textContent = `${activePlayer.getName()}'s turn...`;
+    // Display player's turn or Winner
+    if (game.getGameStatus()) {
+      playerTurnDiv.textContent = `${activePlayer.getName()}'s turn...`;
+    } else {
+      playerTurnDiv.textContent = `GAME OVER! ${game.getWinner()} wins!`;
+    }
 
     // Render board squares
     board.forEach((cell, index) => {
@@ -146,15 +179,10 @@ const ScreenController = () => {
     const selectedCell = e.target.dataset.cell;
     // Make sure I've clicked a cell and not the gaps in between
     if (!selectedCell) return;
-
-    // TODO add in condition to check successful turn e.g if clicks on already filled cell nothing happens.
-    // did a check for empty cell in  placeToken(), but possibly other check here would be better. as still skips
-    // to next player
-
     game.playRound(selectedCell);
-
     updateScreen();
   }
+
   boardDiv.addEventListener("click", clickHandlerBoard);
 
   // Initial render
