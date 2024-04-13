@@ -88,21 +88,31 @@ const GameController = () => {
     // 0 4 8 match
     //  2 4 6 match
     // wins
-    let xCount = 0;
-    let oCount = 0;
+    let horizXCount = 0;
+    let horizOCount = 0;
     // check horizontals
-    console.log(xCount, oCount);
+    console.log(
+      "horizXCount: " + horizXCount + ", horizOCount: " + horizOCount
+    );
     console.log(board.getBoard()[0].getValue());
-    for (let j = 0; j < 3; j++)
-      if (board.getBoard()[j].getValue() == "X") {
-        console.log("Counting");
-        xCount++;
-        console.log(xCount);
-      } else if (board.getBoard()[j].getValue() == "O") {
-        oCount++;
+    let currentBoard = [];
+    for (let i = 0; i < 9; i++) {
+      currentBoard.push(board.getBoard()[i].getValue());
+    }
+    console.log(currentBoard);
+
+    // horizontal winners
+    for (let i = 0; i < 6; i += 3) {
+      for (let j = 0; j < 3; j++) {
+        if (currentBoard[i + j] == "X") {
+          horizXCount++;
+        } else if (currentBoard[i + j] == "O") {
+          horizOCount++;
+        }
+        if (horizXCount === 3 || horizOCount === 3) {
+          return true;
+        }
       }
-    if (xCount === 3 || oCount === 3) {
-      return true;
     }
   };
 
@@ -115,16 +125,16 @@ const GameController = () => {
   const getWinner = () => winner;
 
   const playRound = (location) => {
-    roundCount++;
-
     if (getGameStatus()) {
       if (board.placeToken(location, getActivePlayer())) {
+        roundCount++;
         if (checkForWinner()) {
           console.log(getActivePlayer().getName() + " wins");
           winner = getActivePlayer().getName();
           endGame();
         }
-        if (roundCount >= 9) {
+        console.log("roundCount " + roundCount);
+        if (roundCount == 9) {
           endGame();
         }
         switchPlayerTurn();
