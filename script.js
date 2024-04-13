@@ -88,12 +88,7 @@ const GameController = () => {
     // 0 4 8 match
     //  2 4 6 match
     // wins
-    let horizXCount = 0;
-    let horizOCount = 0;
-    // check horizontals
-    console.log(
-      "horizXCount: " + horizXCount + ", horizOCount: " + horizOCount
-    );
+
     console.log(board.getBoard()[0].getValue());
     let currentBoard = [];
     for (let i = 0; i < 9; i++) {
@@ -102,13 +97,19 @@ const GameController = () => {
     console.log(currentBoard);
 
     // horizontal winners
-    for (let i = 0; i < 6; i += 3) {
-      for (let j = 0; j < 3; j++) {
+    for (let i = 0; i <= 6; i += 3) {
+      let horizXCount = 0;
+      let horizOCount = 0;
+      for (let j = 0; j <= 3; j++) {
         if (currentBoard[i + j] == "X") {
           horizXCount++;
         } else if (currentBoard[i + j] == "O") {
           horizOCount++;
         }
+        // check horizontals
+        console.log(
+          "horizXCount: " + horizXCount + ", horizOCount: " + horizOCount
+        );
         if (horizXCount === 3 || horizOCount === 3) {
           return true;
         }
