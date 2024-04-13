@@ -97,6 +97,7 @@ const GameController = () => {
     console.log(currentBoard);
 
     // horizontal winners
+    // TODO horizontal still brokem
     for (let i = 0; i <= 6; i += 3) {
       let horizXCount = 0;
       let horizOCount = 0;
@@ -115,6 +116,26 @@ const GameController = () => {
         }
       }
     }
+
+    // TODO vertical winners
+    // for (let i = 0; i <= 3; i++) {
+    //   let vertXCount = 0;
+    //   let vertOCount = 0;
+    //   for (let j = 0; j <= 3; j++) {
+    //     if (currentBoard[j + 3] == "X") {
+    //       vertXCount++;
+    //     } else if (currentBoard[j + 3] == "O") {
+    //       vertOCount++;
+    //     }
+    //     // check verts
+    //     console.log(
+    //       "vertXCount: " + vertXCount + ", vertOCount: " + vertOCount
+    //     );
+    //     if (vertXCount === 3 || vertOCount === 3) {
+    //       return true;
+    //     }
+    //   }
+    // }
   };
 
   const endGame = () => {
