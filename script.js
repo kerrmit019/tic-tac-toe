@@ -145,6 +145,7 @@ const ScreenController = () => {
   const game = GameController();
   const playerTurnDiv = document.querySelector(".turn");
   const boardDiv = document.querySelector(".boardGameGrid");
+  const mainEl = document.querySelector("main");
 
   const updateScreen = () => {
     // clear the board
@@ -159,6 +160,12 @@ const ScreenController = () => {
       playerTurnDiv.textContent = `${activePlayer.getName()}'s turn...`;
     } else {
       playerTurnDiv.textContent = `GAME OVER! ${game.getWinner()} wins!`;
+
+      const playAgainButton = document.createElement("button");
+      playAgainButton.textContent = "Play Again?";
+      playAgainButton.classList.add("playAgain");
+      playerTurnDiv.appendChild(playAgainButton);
+      // TODO make it a modal (review previous book project)
     }
 
     // Render board squares
