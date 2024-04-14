@@ -96,46 +96,50 @@ const GameController = () => {
     }
     console.log(currentBoard);
 
-    // horizontal winners
-    // TODO horizontal still brokem
-    for (let i = 0; i <= 6; i += 3) {
-      let horizXCount = 0;
-      let horizOCount = 0;
-      for (let j = 0; j <= 3; j++) {
-        if (currentBoard[i + j] == "X") {
-          horizXCount++;
-        } else if (currentBoard[i + j] == "O") {
-          horizOCount++;
-        }
-        // check horizontals
-        console.log(
-          "horizXCount: " + horizXCount + ", horizOCount: " + horizOCount
-        );
-        if (horizXCount === 3 || horizOCount === 3) {
-          return true;
-        }
-      }
-    }
-
-    // TODO vertical winners
-    // for (let i = 0; i <= 3; i++) {
-    //   let vertXCount = 0;
-    //   let vertOCount = 0;
-    //   for (let j = 0; j <= 3; j++) {
-    //     if (currentBoard[j + 3] == "X") {
-    //       vertXCount++;
-    //     } else if (currentBoard[j + 3] == "O") {
-    //       vertOCount++;
-    //     }
-    //     // check verts
-    //     console.log(
-    //       "vertXCount: " + vertXCount + ", vertOCount: " + vertOCount
-    //     );
-    //     if (vertXCount === 3 || vertOCount === 3) {
-    //       return true;
+    // // horizontal winners
+    // TODO THIS WORKS - JUST blocked out so I can check vertical
+    // for (let i = 0; i <= 6; i += 3) {
+    //   let horizXCount = 0;
+    //   let horizOCount = 0;
+    //   row = currentBoard.slice(i, i + 3);
+    //   console.log(row);
+    //   for (item in row) {
+    //     if (row[item] == "X") {
+    //       horizXCount++;
+    //     } else if (row[item] == "O") {
+    //       horizOCount++;
     //     }
     //   }
+    //   console.log(
+    //     "horizXCount: " + horizXCount + ", horizOCount: " + horizOCount
+    //   );
+    //   if (horizXCount === 3 || horizOCount === 3) {
+    //     return true;
+    //   }
     // }
+
+    // vertical winners
+    for (let i = 0; i <= 2; i++) {
+      let vertXCount = 0;
+      let vertOCount = 0;
+      column = [];
+      column.push(currentBoard[i]);
+      column.push(currentBoard[i + 3]);
+      column.push(currentBoard[i + 6]);
+
+      console.log(column);
+      for (item in column) {
+        if (column[item] == "X") {
+          vertXCount++;
+        } else if (column[item] == "O") {
+          vertOCount++;
+        }
+      }
+      console.log("vertXCount: " + vertXCount + ", vertOCount: " + vertOCount);
+      if (vertXCount === 3 || vertOCount === 3) {
+        return true;
+      }
+    }
   };
 
   const endGame = () => {
