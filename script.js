@@ -95,9 +95,8 @@ const GameController = () => {
       currentBoard.push(board.getBoard()[i].getValue());
     }
     console.log(currentBoard);
-
+    // TODO horiz and vert works just checking diags now
     // // horizontal winners
-    // TODO THIS WORKS - JUST blocked out so I can check vertical
     // for (let i = 0; i <= 6; i += 3) {
     //   let horizXCount = 0;
     //   let horizOCount = 0;
@@ -118,25 +117,53 @@ const GameController = () => {
     //   }
     // }
 
-    // vertical winners
-    for (let i = 0; i <= 2; i++) {
-      let vertXCount = 0;
-      let vertOCount = 0;
-      column = [];
-      column.push(currentBoard[i]);
-      column.push(currentBoard[i + 3]);
-      column.push(currentBoard[i + 6]);
+    // // vertical winners
+    // for (let i = 0; i <= 2; i++) {
+    //   let vertXCount = 0;
+    //   let vertOCount = 0;
+    //   column = [];
+    //   column.push(currentBoard[i]);
+    //   column.push(currentBoard[i + 3]);
+    //   column.push(currentBoard[i + 6]);
 
-      console.log(column);
-      for (item in column) {
-        if (column[item] == "X") {
-          vertXCount++;
-        } else if (column[item] == "O") {
-          vertOCount++;
+    //   console.log(column);
+    //   for (item in column) {
+    //     if (column[item] == "X") {
+    //       vertXCount++;
+    //     } else if (column[item] == "O") {
+    //       vertOCount++;
+    //     }
+    //   }
+    //   console.log("vertXCount: " + vertXCount + ", vertOCount: " + vertOCount);
+    //   if (vertXCount === 3 || vertOCount === 3) {
+    //     return true;
+    //   }
+    // }
+
+    // diagonal winners
+    for (let i = 0; i < 3; i += 2) {
+      let diagXCount = 0;
+      let diagOCount = 0;
+      diag = [];
+      if (i == 0) {
+        diag.push(currentBoard[0]);
+        diag.push(currentBoard[4]);
+        diag.push(currentBoard[8]);
+      } else if (i == 2) {
+        diag.push(currentBoard[2]);
+        diag.push(currentBoard[4]);
+        diag.push(currentBoard[6]);
+      }
+      for (item in diag) {
+        if (diag[item] == "X") {
+          diagXCount++;
+        } else if (diag[item] == "O") {
+          diagOCount++;
         }
       }
-      console.log("vertXCount: " + vertXCount + ", vertOCount: " + vertOCount);
-      if (vertXCount === 3 || vertOCount === 3) {
+      console.log(diag);
+      console.log("diagXCount: " + diagXCount + ", diagOCount: " + diagOCount);
+      if (diagXCount === 3 || diagOCount === 3) {
         return true;
       }
     }
