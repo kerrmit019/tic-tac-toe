@@ -71,7 +71,7 @@ const GameController = () => {
   const getActivePlayer = () => activePlayer;
 
   const checkForWinner = () => {
-    // TODO check for winner.
+    TODO check for winner.
     //  0 1 2
     //  3 4 5
     //  6 7 8
@@ -95,50 +95,49 @@ const GameController = () => {
       currentBoard.push(board.getBoard()[i].getValue());
     }
     console.log(currentBoard);
-    // TODO horiz and vert works just checking diags now
-    // // horizontal winners
-    // for (let i = 0; i <= 6; i += 3) {
-    //   let horizXCount = 0;
-    //   let horizOCount = 0;
-    //   row = currentBoard.slice(i, i + 3);
-    //   console.log(row);
-    //   for (item in row) {
-    //     if (row[item] == "X") {
-    //       horizXCount++;
-    //     } else if (row[item] == "O") {
-    //       horizOCount++;
-    //     }
-    //   }
-    //   console.log(
-    //     "horizXCount: " + horizXCount + ", horizOCount: " + horizOCount
-    //   );
-    //   if (horizXCount === 3 || horizOCount === 3) {
-    //     return true;
-    //   }
-    // }
+    // horizontal winners
+    for (let i = 0; i <= 6; i += 3) {
+      let horizXCount = 0;
+      let horizOCount = 0;
+      row = currentBoard.slice(i, i + 3);
+      console.log(row);
+      for (item in row) {
+        if (row[item] == "X") {
+          horizXCount++;
+        } else if (row[item] == "O") {
+          horizOCount++;
+        }
+      }
+      console.log(
+        "horizXCount: " + horizXCount + ", horizOCount: " + horizOCount
+      );
+      if (horizXCount === 3 || horizOCount === 3) {
+        return true;
+      }
+    }
 
     // // vertical winners
-    // for (let i = 0; i <= 2; i++) {
-    //   let vertXCount = 0;
-    //   let vertOCount = 0;
-    //   column = [];
-    //   column.push(currentBoard[i]);
-    //   column.push(currentBoard[i + 3]);
-    //   column.push(currentBoard[i + 6]);
+    for (let i = 0; i <= 2; i++) {
+      let vertXCount = 0;
+      let vertOCount = 0;
+      column = [];
+      column.push(currentBoard[i]);
+      column.push(currentBoard[i + 3]);
+      column.push(currentBoard[i + 6]);
 
-    //   console.log(column);
-    //   for (item in column) {
-    //     if (column[item] == "X") {
-    //       vertXCount++;
-    //     } else if (column[item] == "O") {
-    //       vertOCount++;
-    //     }
-    //   }
-    //   console.log("vertXCount: " + vertXCount + ", vertOCount: " + vertOCount);
-    //   if (vertXCount === 3 || vertOCount === 3) {
-    //     return true;
-    //   }
-    // }
+      console.log(column);
+      for (item in column) {
+        if (column[item] == "X") {
+          vertXCount++;
+        } else if (column[item] == "O") {
+          vertOCount++;
+        }
+      }
+      console.log("vertXCount: " + vertXCount + ", vertOCount: " + vertOCount);
+      if (vertXCount === 3 || vertOCount === 3) {
+        return true;
+      }
+    }
 
     // diagonal winners
     for (let i = 0; i < 3; i += 2) {
