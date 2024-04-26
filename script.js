@@ -71,7 +71,6 @@ const GameController = () => {
   const getActivePlayer = () => activePlayer;
 
   const checkForWinner = () => {
-    TODO check for winner.
     //  0 1 2
     //  3 4 5
     //  6 7 8
@@ -217,16 +216,32 @@ const ScreenController = () => {
     const board = game.getBoard();
     const activePlayer = game.getActivePlayer();
 
+    // open modal
+    const playAgainModal = document.querySelector("#playAgainModal");
+    const playAgainButton = document.querySelector(".playAgainButton");
+    // TODO add in functionality for button
+    const playAgainModalText = document.querySelector(".playAgainText");
+
+    const closeModalButton = document.querySelector(".modalClose");
+
     // Display player's turn or Winner
     if (game.getGameStatus()) {
       playerTurnDiv.textContent = `${activePlayer.getName()}'s turn...`;
     } else {
-      playerTurnDiv.textContent = `GAME OVER! ${game.getWinner()} wins!`;
+      playAgainModal.style.display = "block";
+      playAgainModalText.textContent = `GAME OVER! ${game.getWinner()} wins!`;
 
-      const playAgainButton = document.createElement("button");
-      playAgainButton.textContent = "Play Again?";
-      playAgainButton.classList.add("playAgain");
-      playerTurnDiv.appendChild(playAgainButton);
+      // close the modal
+      closeModalButton.addEventListener("click", function () {
+        playAgainModal.style.display = "none";
+      });
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == playAgainModal) {
+          playAgainModal.style.display = "none";
+        }
+      };
       // TODO make it a modal (review previous book project)
     }
 

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+      <script    src="https://kit.fontawesome.com/6db53d092c.js"
+      crossorigin="anonymous"
+    ></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Tic-Tac-Toe</title>
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
@@ -12,6 +15,13 @@
     <header><h1>Tic Tac Toe</h1></header>
     <main>
       <div class="boardGameContainer">
+        <div id="playAgainModal" class="playAgainModal">
+          <div class="playAgainModalContent">
+             <i class="fa-solid fa-rectangle-xmark modalClose"></i>
+            <p class="playAgainText"></p>
+            <button class="playAgainButton">Play Again?</button>
+          </div>
+        </div>
         <h1 class="turn"></div>
         <div class="boardGameGrid"></div>
       </div>

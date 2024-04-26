@@ -49,9 +49,55 @@ main {
   grid-template-columns: repeat(3, 1fr);
 }
 
-.playAgain {
+.playAgainButton {
   padding: 10px;
   margin-top: 20px;
+}
+
+/* The Modal (background) */
+.playAgainModal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.playAgainModalContent {
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f7f4;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px 10px;
+  border: 1px solid #172121;
+  border-radius: 15px;
+  color: blue;
+  min-width: 80px;
+  width: 80vw;
+  max-width: 200px;
+}
+
+.modalClose {
+  color: #9d0208;
+  font-size: 28px;
+  font-weight: bold;
+  float: right;
+  align-self: flex-end;
+}
+
+.modalClose:hover,
+.modalClose:focus {
+  color: #283b3b;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 footer {
