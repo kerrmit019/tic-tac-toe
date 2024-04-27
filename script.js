@@ -224,6 +224,10 @@ const ScreenController = () => {
 
     const closeModalButton = document.querySelector(".modalClose");
 
+    playAgainButton.onclick = function (event) {
+      location.reload();
+    };
+
     // Display player's turn or Winner
     if (game.getGameStatus()) {
       playerTurnDiv.textContent = `${activePlayer.getName()}'s turn...`;
