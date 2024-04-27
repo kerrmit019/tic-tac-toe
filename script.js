@@ -219,8 +219,8 @@ const ScreenController = () => {
     // open modal
     const playAgainModal = document.querySelector("#playAgainModal");
     const playAgainButton = document.querySelector(".playAgainButton");
-    // TODO add in functionality for button
-    const playAgainModalText = document.querySelector(".playAgainText");
+    const playAgainModalText1 = document.querySelector("#playAgainText1");
+    const playAgainModalText2 = document.querySelector("#playAgainText2");
 
     const closeModalButton = document.querySelector(".modalClose");
 
@@ -233,7 +233,8 @@ const ScreenController = () => {
       playerTurnDiv.textContent = `${activePlayer.getName()}'s turn...`;
     } else {
       playAgainModal.style.display = "block";
-      playAgainModalText.textContent = `GAME OVER! ${game.getWinner()} wins!`;
+      playAgainModalText1.textContent = `GAME OVER!`;
+      playAgainModalText2.textContent = `${game.getWinner()} wins!`;
 
       // close the modal
       closeModalButton.addEventListener("click", function () {
