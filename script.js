@@ -88,18 +88,15 @@ const GameController = () => {
     //  2 4 6 match
     // wins
 
-    console.log(board.getBoard()[0].getValue());
     let currentBoard = [];
     for (let i = 0; i < 9; i++) {
       currentBoard.push(board.getBoard()[i].getValue());
     }
-    console.log(currentBoard);
     // horizontal winners
     for (let i = 0; i <= 6; i += 3) {
       let horizXCount = 0;
       let horizOCount = 0;
       row = currentBoard.slice(i, i + 3);
-      console.log(row);
       for (item in row) {
         if (row[item] == "X") {
           horizXCount++;
@@ -107,9 +104,6 @@ const GameController = () => {
           horizOCount++;
         }
       }
-      console.log(
-        "horizXCount: " + horizXCount + ", horizOCount: " + horizOCount
-      );
       if (horizXCount === 3 || horizOCount === 3) {
         return true;
       }
@@ -124,7 +118,6 @@ const GameController = () => {
       column.push(currentBoard[i + 3]);
       column.push(currentBoard[i + 6]);
 
-      console.log(column);
       for (item in column) {
         if (column[item] == "X") {
           vertXCount++;
@@ -132,7 +125,6 @@ const GameController = () => {
           vertOCount++;
         }
       }
-      console.log("vertXCount: " + vertXCount + ", vertOCount: " + vertOCount);
       if (vertXCount === 3 || vertOCount === 3) {
         return true;
       }
@@ -159,8 +151,6 @@ const GameController = () => {
           diagOCount++;
         }
       }
-      console.log(diag);
-      console.log("diagXCount: " + diagXCount + ", diagOCount: " + diagOCount);
       if (diagXCount === 3 || diagOCount === 3) {
         return true;
       }
@@ -168,8 +158,6 @@ const GameController = () => {
   };
 
   const endGame = () => {
-    console.log("Game Over!");
-
     gameStatus = false;
   };
 
@@ -180,11 +168,9 @@ const GameController = () => {
       if (board.placeToken(location, getActivePlayer())) {
         roundCount++;
         if (checkForWinner()) {
-          console.log(getActivePlayer().getName() + " wins");
           winner = getActivePlayer().getName();
           endGame();
         }
-        console.log("roundCount " + roundCount);
         if (roundCount == 9) {
           endGame();
         }
@@ -206,7 +192,6 @@ const ScreenController = () => {
   const game = GameController();
   const playerTurnDiv = document.querySelector(".turn");
   const boardDiv = document.querySelector(".boardGameGrid");
-  const mainEl = document.querySelector("main");
 
   const updateScreen = () => {
     // clear the board
