@@ -1,6 +1,10 @@
 :root {
   --gameBoard-height: 400px;
   --gameBoard-width: 400px;
+  --modal-background-colour: #765fb0;
+  --hover-button-colour: hsla(173, 37%, 42%, 0.62);
+  --button-colour: #197e7e;
+  --header-colour: #7998cc;
 }
 * {
   margin: 0;
@@ -19,6 +23,7 @@ body {
 header {
   text-align: center;
   padding: 1.5em 0;
+  background-color: var(--header-colour);
 }
 
 main {
@@ -27,19 +32,17 @@ main {
   flex: 1;
   align-items: center;
   justify-content: space-around;
-  background-color: pink;
-}
-
-.boardGameContainer {
-  background-color: darkcyan;
+  background-color: #883689;
 }
 
 .turn {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-style: dashed;
-  /* padding: 10px; */
+  border-radius: 15px;
+  border-style: solid;
+  padding: 10px;
+  background-color: var(--button-colour);
 }
 
 .boardGameGrid {
@@ -47,6 +50,12 @@ main {
   width: var(--gameBoard-width);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  padding: 5px;
+}
+
+.cell {
+  font-size: xx-large;
+  font-weight: 700;
 }
 
 .playAgainButton {
@@ -57,13 +66,13 @@ main {
   border: 2px solid;
   color: #f0f7f4;
   border-radius: 10px;
-  background-color: #1f9c9c;
+  background-color: var(--button-colour);
 }
 
 .playAgainButton:hover,
 .playAgainButton:focus {
   color: #f0f7f4;
-  background-color: #197e7e;
+  background-color: var(--hover-button-colour);
   text-decoration: none;
   cursor: pointer;
 }
@@ -88,13 +97,12 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f0f7f4;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 10px 15px;
   border: 3px solid #f0f7f4;
   border-radius: 15px;
   color: #f0f7f4;
-  background-color: #c24710;
+  background-color: var(--modal-background-colour);
   min-width: 80px;
   width: 80vw;
   max-width: 200px;
@@ -123,10 +131,5 @@ main {
 
 footer {
   text-align: center;
-}
-
-header,
-main,
-footer {
-  border: 2px pink solid;
+  background-color: var(--header-colour);
 }

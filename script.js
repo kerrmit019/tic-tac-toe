@@ -230,7 +230,7 @@ const ScreenController = () => {
 
     // Display player's turn or Winner
     if (game.getGameStatus()) {
-      playerTurnDiv.textContent = `${activePlayer.getName()}'s turn...`;
+      playerTurnDiv.textContent = `${activePlayer.getName()}'s turn`;
     } else {
       playAgainModal.style.display = "block";
       playAgainModalText1.textContent = `GAME OVER!`;
@@ -247,7 +247,6 @@ const ScreenController = () => {
           playAgainModal.style.display = "none";
         }
       };
-      // TODO make it a modal (review previous book project)
     }
 
     // Render board squares
